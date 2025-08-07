@@ -1,7 +1,7 @@
 volumes:
   - name: html-volume
     configMap:
-      name: {{ include "my-nginx.fullname" . }}-html
+      name: {{ my-nginx.fullname }}-html
 containers:
   - name: nginx
     image: nginx:stable-alpine
