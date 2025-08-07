@@ -10,3 +10,14 @@ service:
   port: 80
 
 containerPort: 80
+
+customHtml: |
+  <!DOCTYPE html>
+  <html>
+  <head>
+    <title>My Custom Page</title>
+  </head>
+  <body>
+    <h1>Hello from My Custom HTML!</h1>
+  </body>
+  </html>

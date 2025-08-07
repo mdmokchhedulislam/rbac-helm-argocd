@@ -1,20 +1,13 @@
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: {{ .Release.Name }}-nginx
-spec:
-  replicas: {{ .Values.replicaCount }}
-  selector:
-    matchLabels:
-      app: {{ .Release.Name }}-nginx
-  template:
-    metadata:
-      labels:
-        app: {{ .Release.Name }}-nginx
-    spec:
-      containers:
-        - name: nginx
-          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
-          imagePullPolicy: {{ .Values.image.pullPolicy }}
-          ports:
-            - containerPort: {{ .Values.containerPort }}
+volumes:
+  - name: html-volume
+    configMap:
+      name: {{ include "my-nginx.fullname" . }}-html
+containers:
+  - name: nginx
+    image: nginx:stable-alpine
+    ports:
+      - containerPort: 80
+    volumeMounts:
+      - name: html-volume
+        mountPath: /usr/share/nginx/html/index.html
+        subPath: index.html
