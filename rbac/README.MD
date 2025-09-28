@@ -75,3 +75,16 @@ Check RBAC permissions:
 kubectl auth can-i get pods --as rbac
 kubectl auth can-i create pods --as rbac
 kubectl auth can-i delete pods --as rbac
+
+
+add rbac role 
+
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  namespace: demo-namespace   
+  name: pod-reader
+rules:
+  - apiGroups: [""]          
+    resources: ["pods"]       
+    verbs: ["get", "list", "watch"]  
