@@ -88,3 +88,22 @@ rules:
   - apiGroups: [""]          
     resources: ["pods"]       
     verbs: ["get", "list", "watch"]  
+
+
+
+add rbac role buinding
+
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: rbac-pod-reader-binding
+  namespace: demo-namespace   
+subjects:
+  - kind: User
+    name: rbac               
+    apiGroup: rbac.authorization.k8s.io
+roleRef:
+  kind: Role
+  name: pod-reader          
+  apiGroup: rbac.authorization.k8s.io
+
