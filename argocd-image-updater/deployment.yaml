@@ -15,7 +15,7 @@ spec:
 
       containers:
       - name: chat-app
-        image: mokchhedul/project-frontend:latest
+        image: mokchhedul/project-frontend:v1.1.1
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 80
