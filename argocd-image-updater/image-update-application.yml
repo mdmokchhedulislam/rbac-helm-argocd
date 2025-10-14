@@ -1,0 +1,28 @@
+apiVersion: argoproj.io/v1alpha1 
+kind: Application               
+metadata:
+  name: chat-app                
+  namespace: argocd             
+  annotations:
+   
+    argocd-image-updater.argoproj.io/image-list: chat-app=mokchhedul/project-frontend 
+
+ 
+    argocd-image-updater.argoproj.io/write-back-method: git:secret:argocd/argocd-image-updater-git-creds 
+
+    
+    argocd-image-updater.argoproj.io/chai-app.update-strategy: semver 
+
+spec:
+  project: default              
+  source:
+    repoURL: https://github.com/mdmokchhedulislam/java-chat-app.git
+    targetRevision: main        
+    path: k8s
+  destination:
+    server: https://kubernetes.default.svc 
+    namespace: default          
+  syncPolicy:
+    automated:                  
+      prune: true               
+      selfHeal: true           
