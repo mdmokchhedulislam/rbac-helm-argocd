@@ -107,3 +107,8 @@ roleRef:
   name: pod-reader          
   apiGroup: rbac.authorization.k8s.io
 
+
+# for find certificate-authority-data
+aws eks describe-cluster --name clustername --query "cluster.certificateAuthority.data" --output text
+
+
